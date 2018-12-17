@@ -10,7 +10,7 @@ const User = connector.define('Admin', {
         primaryKey: true,
         autoIncrement: true
     },
-    email: {
+    adminId: {
         type: Sequelize.STRING,
         allowNull: false
     },

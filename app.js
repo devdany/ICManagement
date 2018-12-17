@@ -16,13 +16,20 @@ dbConnector.authenticate()
 
 const User = require('./models/User');
 const Admin = require('./models/Admin');
+const Vacation = require('./models/Vacation');
 
-User.sync({force: true})
-Admin.sync({force: true})
+User.sync({force: false})
+Admin.sync({force: false})
+Vacation.sync({force: false})
+
+User.hasMany(Vacation, {foreignKey: 'user_id'})
+Vacation.belongsTo(User, {foreignKey: 'user_id'})
+
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const adminRouter = require('./routes/admin');
+const vacationRouter = require('./routes/vacation');
 
 const app = express();
 
@@ -45,6 +52,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/vacation', vacationRouter);
 
 
 // catch 404 and forward to error handler

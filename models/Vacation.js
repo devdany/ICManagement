@@ -4,25 +4,29 @@ const metaFields = require('./MetaFields');
 
 const {create_dt, update_dt, delete_dt} = metaFields;
 
-const User = connector.define('User', {
+const Vacation = connector.define('Vacation', {
     no: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    vacations: {
+    user_id: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: false
     },
-    isDelete: {
+    content: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+    type: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    date: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    isDelete:{
         type: Sequelize.BOOLEAN,
         allowNull: false
     },
@@ -36,4 +40,4 @@ const User = connector.define('User', {
     timestamps: false
 })
 
-module.exports = User;
+module.exports = Vacation;
